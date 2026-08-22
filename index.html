@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alaqard Care Guide Demo</title>
+  <style></style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="card hero">
+      <div class="badge">Static Demo • No setup required</div>
+      <h1>Alaqard Care Guide</h1>
+      <p>
+        A guided starting point for amputees, families, and caregivers entering prosthetic care.
+        This system is built to reduce confusion, personalize the path, and move users toward intake or provider matching.
+      </p>
+    </section>
+
+    <section class="card nav">
+      <div class="nav-left">
+        <h2>Structured onboarding library</h2>
+        <p>Decision-oriented, navigable, expandable.</p>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="nav-btn active" data-view-btn="gateway">Gateway</button>
+        <button class="nav-btn" data-view-btn="pathway">Condition Pathway</button>
+        <button class="nav-btn" data-view-btn="resources">Resource Library</button>
+        <button class="nav-btn" data-view-btn="process">Process Flow</button>
+      </div>
+
+      <div class="progress-box">
+        <div class="progress-meta">
+          <span>Profile completion</span>
+          <span id="progressText">0%</span>
+        </div>
+        <div class="progress">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view active" id="gateway">
+      <div class="grid-hero">
+        <div class="card panel">
+          <div class="badge" style="background:#0f172a;color:#fff;border:none;">Entry Gateway</div>
+          <h2 class="section-title">Start with the right pathway, not a pile of information.</h2>
+          <p class="section-sub">
+            The first screen determines who the user is, then routes them into a more relevant experience.
+            The point is to reduce noise before the system asks deeper questions.
+          </p>
+
+          <div class="choice-list">
+            <div class="mini">
+              <strong>Purpose</strong><br>
+              Guide decisions instead of dumping information.
+            </div>
+            <div class="mini">
+              <strong>Audience</strong><br>
+              Amputees, parents of children with limb difference, and caregivers.
+            </div>
+            <div class="mini">
+              <strong>Next move</strong><br>
+              Build the profile that controls personalization.
+            </div>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <h2 class="section-title" style="font-size:30px;">Who are you?</h2>
+          <p class="section-sub">Choose the starting route that matches the user’s situation.</p>
+
+          <div class="choice-list" id="userChoices"></div>
+
+          <div class="btn-row">
+            <button class="btn" id="continueGateway">Continue to condition pathway</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="pathway">
+      <div class="grid-2">
+        <div class="card panel">
+          <h2 class="section-title">Condition pathway</h2>
+          <p class="section-sub">This profile controls what the user sees and what the system recommends next.</p>
+
+          <div class="field">
+            <label for="limbType">Limb classification</label>
+            <select id="limbType">
+              <option value="">Select limb classification</option>
+              <option value="upper">Upper limb</option>
+              <option value="lower">Lower limb</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="ampLevel">Amputation level</label>
+            <select id="ampLevel">
+              <option value="">Select amputation level</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Lifestyle priority</label>
+            <div class="pill-grid" id="lifestyleChoices"></div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" id="continuePathway">Continue to resources</button>
+            <button class="btn secondary" id="resetPathway">Reset selections</button>
+          </div>
+        </div>
+
+        <div class="card panel">
+          <h2 class="section-title" style="font-size:30px;">Profile summary</h2>
+          <p class="section-sub">State is stored locally and reused across the experience.</p>
+
+          <div class="summary-box">
+            <div class="k">User type</div>
+            <div class="v" id="summaryUser">Not selected</div>
+          </div>
+          <div class="summary-box">
+            <div class="k">Limb classification</div>
+            <div class="v" id="summaryLimb">Not selected</div>
+          </div>
+          <div class="summary-box">
+            <div class="k">Amputation level</div>
+            <div class="v" id="summaryLevel">Not selected</div>
+          </div>
+          <div class="summary-box">
+            <div class="k">Lifestyle</div>
+            <div class="v" id="summaryLifestyle">Not selected</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="resources">
+      <div class="grid-2">
+        <div class="card panel">
+          <h2 class="section-title">Resource library</h2>
+          <p class="section-sub">Short, structured modules filtered by profile to reduce confusion and move the user forward.</p>
+          <div class="tag-row" id="profileTags"></div>
+        </div>
+
+        <div class="card panel">
+          <h2 class="section-title" style="font-size:30px;">Action layer</h2>
+          <p class="section-sub">The user should always have a next action available.</p>
+          <div class="btn-row" style="margin-top:14px;">
+            <button class="btn" data-action="intake">Start Intake</button>
+            <button class="btn secondary" data-action="providers">Find Providers</button>
+          </div>
+          <div class="cta-note">
+            These are placeholder links for the existing intake and matching systems. In production, these would route directly into those flows.
+          </div>
+        </div>
+      </div>
+
+      <div id="resourceAccordions"></div>
+    </section>
+
+    <section class="view" id="process">
+      <div class="grid-2">
+        <div class="card panel">
+          <h2 class="section-title">Process visualization</h2>
+          <p class="section-sub">Referral → Evaluation → Measurement → Fitting → Training → Follow-Up</p>
+          <div class="flow-grid" id="flowButtons"></div>
+        </div>
+
+        <div class="card panel">
+          <h2 class="section-title" style="font-size:30px;" id="processTitle">Referral</h2>
+          <p class="section-sub">Use this to understand the care path before it becomes a source of confusion.</p>
+
+          <div class="summary-box" style="margin-top:18px;">
+            <div class="k">What happens</div>
+            <div class="v" id="processWhat"></div>
+          </div>
+          <div class="summary-box">
+            <div class="k">Who is involved</div>
+            <div class="v" id="processWho"></div>
+          </div>
+          <div class="summary-box">
+            <div class="k">What to prepare</div>
+            <div class="v" id="processPrepare"></div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" data-action="intake">Start Intake</button>
+            <button class="btn secondary" data-action="providers">Find Providers</button>
+          </div>
+
+          <div class="action-box">
+            The system should help the user understand the current step and immediately expose the next practical action.
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal" id="actionModal">
+    <div class="modal-card">
+      <h3 id="modalTitle">Action</h3>
+      <p id="modalBody"></p>
+      <div class="btn-row">
+        <button class="btn" id="closeModal">Close</button>
+        <button class="btn secondary" id="closeModal2">Return to guide</button>
+      </div>
+    </div>
+  </div>
+
+  <script></script>
+</body>
+</html>
