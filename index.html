@@ -1,210 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Alaqard Care helps people with limb loss or limb difference, families, and caregivers organize a care profile and reach trusted prosthetic-care resources." />
   <title>Alaqard Care</title>
-  <style></style>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="wrap">
-    <section class="card hero">
-      <h1>Alaqard</h1> 
-    </section>
-     <p>
-        A digital guide to help patients and caregivers navigate the prosthetic care journey. 
-        The system is designed to reduce confusion, provide clarity, and help users understand 
-        what to expect at each step of the process.
+    <header class="card hero">
+      <h1>Alaqard</h1>
+      <p>
+        A digital guide for people with limb loss or limb difference, families, and caregivers navigating prosthetic care.
+        Build a Profile Card, learn the care process, and open trusted resources from established health and professional organizations.
       </p>
-    <section class="card nav">
+    </header>
+
+    <section class="card nav" aria-label="Alaqard navigation">
       <div class="nav-left">
-        <h2>Resource Library</h2>
-        <p></p>
+        <h2>AQ Hub</h2>
+        <p>Your starting point for profile building, education, and care navigation.</p>
       </div>
 
       <div class="nav-buttons">
-        <button class="nav-btn active" data-view-btn="gateway">Gateway</button>
-        <button class="nav-btn" data-view-btn="pathway">Condition Pathway</button>
-        <button class="nav-btn" data-view-btn="resources">Resource Library</button>
-        <button class="nav-btn" data-view-btn="process">Process Flow</button>
+        <button class="nav-btn active" data-view-btn="gateway">Home</button>
+        <button class="nav-btn" data-view-btn="pathway">Profile Card</button>
+        <button class="nav-btn" data-view-btn="resources">Alaqard Library</button>
+        <button class="nav-btn" data-view-btn="process">Process to Prostheses</button>
       </div>
 
       <div class="progress-box">
         <div class="progress-meta">
-          <span>Care Card completion</span>
+          <span>Profile Card completion</span>
           <span id="progressText">0%</span>
         </div>
-        <div class="progress">
+        <div class="progress" aria-hidden="true">
           <div class="progress-fill" id="progressFill"></div>
         </div>
       </div>
     </section>
 
-    <section class="view active" id="gateway">
-      <div class="grid-hero">
-        <div class="card panel">
-          <div class="badge" style="background:#0f172a;color:#fff;border:none;">Find Your Next Clinic</div>
-          <h2 class="section-title">If you are unsure of what resources are around and need a some direction or suggestions, start here.</h2>
-          <p class="section-sub">
-            Getting to understand your needs is the firt step in building a profile 
-            that will help you find the right resources and next steps.
-          </p>
+    <main>
+      <section class="view active" id="gateway">
+        <div class="grid-hero">
+          <div class="card panel gateway-intro">
+            <div class="badge">Start here</div>
+            <h2 class="section-title">Find the right resources for you.</h2>
+            <p class="section-sub">
+              Your Profile Card keeps the basics of your situation in one place so the rest of Alaqard can organize information around you.
+            </p>
 
-          <div class="choice-list">
+            <div class="choice-list">
+              <div class="mini">
+                <strong>Profile Building</strong><br />
+                Record who the profile is for, limb classification, amputation level, and lifestyle priority.
+              </div>
+              <div class="mini">
+                <strong>Alaqard Library</strong><br />
+                Open patient guides, rehabilitation information, professional directories, coverage information, and support resources from verified organizations.
+              </div>
+              <div class="mini">
+                <strong>Care Navigation</strong><br />
+                Review the major stages of prosthetic care and use professional directories to locate certified practitioners and rehabilitation providers.
+              </div>
             </div>
-            <div class="mini">
-              <strong>Audience</strong><br>
-              Families, caregivers, and those with "less" entering prosthetic care.
+          </div>
+
+          <div class="card panel">
+            <h2 class="section-title profile-question">Discover who you are</h2>
+            <p class="section-sub">Choose the option that best describes who this Profile Card is for.</p>
+
+            <div class="choice-list" id="userChoices"></div>
+            <div class="btn-row">
+              <button class="btn" id="continueGateway" disabled>Continue to Profile Card</button>
             </div>
-            <div class="mini">
-              <strong>Next move</strong><br>
-              Build the profile that controls personalization.
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="pathway">
+        <div class="grid-2">
+          <div class="card panel">
+            <h2 class="section-title">Profile Card</h2>
+            <p class="section-sub">Add the information that will be used to organize your library view.</p>
+
+            <div class="field">
+              <label for="limbType">Limb classification</label>
+              <select id="limbType">
+                <option value="">Select limb classification</option>
+                <option value="upper">Upper limb</option>
+                <option value="lower">Lower limb</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="ampLevel">Amputation level</label>
+              <select id="ampLevel" disabled>
+                <option value="">Select amputation level</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Lifestyle priority</label>
+              <div class="pill-grid" id="lifestyleChoices"></div>
+            </div>
+
+            <div class="btn-row">
+              <button class="btn" id="continuePathway" disabled>Open Alaqard Library</button>
+              <button class="btn secondary" id="resetPathway">Reset selections</button>
+            </div>
+          </div>
+
+          <div class="card panel">
+            <h2 class="section-title profile-summary-title">Profile summary</h2>
+
+            <div class="summary-box">
+              <div class="k">User type</div>
+              <div class="v" id="summaryUser">Not selected</div>
+            </div>
+            <div class="summary-box">
+              <div class="k">Limb classification</div>
+              <div class="v" id="summaryLimb">Not selected</div>
+            </div>
+            <div class="summary-box">
+              <div class="k">Amputation level</div>
+              <div class="v" id="summaryLevel">Not selected</div>
+            </div>
+            <div class="summary-box">
+              <div class="k">Lifestyle priority</div>
+              <div class="v" id="summaryLifestyle">Not selected</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="resources">
+        <div class="grid-2">
+          <div class="card panel">
+            <h2 class="section-title">Alaqard Library</h2>
+            <p class="section-sub">
+              Open trusted guides, rehabilitation resources, professional directories, coverage information, and community support.
+              External resources open in a new tab.
+            </p>
+            <div class="tag-row" id="profileTags"></div>
+          </div>
+
+          <div class="card panel">
+            <h2 class="section-title quick-links-title">Quick links</h2>
+            <div class="btn-row stacked-actions">
+              <button class="btn" data-action="profile">Open Profile Card</button>
+              <button class="btn secondary" data-action="providers">Find a Certified Prosthetist</button>
+              <button class="btn secondary" data-action="support">Find Peer Support</button>
             </div>
           </div>
         </div>
 
-        <div class="card panel">
-          <h2 class="section-title" style="font-size:30px;">Who are you?</h2>
-          <p class="section-sub">Choose the starting route that matches the user’s situation.</p>
+        <div id="resourceAccordions"></div>
+      </section>
 
-          <div class="choice-list" id="userChoices"></div>
-          <div class="btn-row">
-            <button class="btn" id="continueGateway">Continue to condition pathway</button>
+      <section class="view" id="process">
+        <div class="grid-2">
+          <div class="card panel">
+            <h2 class="section-title">Process to Prostheses</h2>
+            <p class="section-sub">Referral → Evaluation → Measurement → Fitting → Training → Follow-Up</p>
+            <div class="flow-grid" id="flowButtons"></div>
+          </div>
+
+          <div class="card panel">
+            <h2 class="section-title process-title" id="processTitle">Referral</h2>
+
+            <div class="summary-box process-summary-first">
+              <div class="k">What happens</div>
+              <div class="v" id="processWhat"></div>
+            </div>
+            <div class="summary-box">
+              <div class="k">Who may be involved</div>
+              <div class="v" id="processWho"></div>
+            </div>
+            <div class="summary-box">
+              <div class="k">What to prepare</div>
+              <div class="v" id="processPrepare"></div>
+            </div>
+
+            <div class="btn-row">
+              <button class="btn" data-action="profile">Open Profile Card</button>
+              <button class="btn secondary" data-action="providers">Find a Certified Prosthetist</button>
+            </div>
+
+            <div class="action-box">
+              Care does not follow one identical timeline for everyone. Healing, limb level, health, goals, coverage, and the clinical team can change the order and timing of these steps.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <section class="view" id="pathway">
-      <div class="grid-2">
-        <div class="card panel">
-          <h2 class="section-title">Condition pathway</h2>
-          <p class="section-sub">This profile controls what the user sees and what the system recommends next.</p>
-
-          <div class="field">
-            <label for="limbType">Limb classification</label>
-            <select id="limbType">
-              <option value="">Select limb classification</option>
-              <option value="upper">Upper limb</option>
-              <option value="lower">Lower limb</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="ampLevel">Amputation level</label>
-            <select id="ampLevel">
-              <option value="">Select amputation level</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>Lifestyle priority</label>
-            <div class="pill-grid" id="lifestyleChoices"></div>
-          </div>
-
-          <div class="btn-row">
-            <button class="btn" id="continuePathway">Continue to resources</button>
-            <button class="btn secondary" id="resetPathway">Reset selections</button>
-          </div>
-        </div>
-
-        <div class="card panel">
-          <h2 class="section-title" style="font-size:30px;">Profile summary</h2>
-          <p class="section-sub">State is stored locally and reused across the experience.</p>
-
-          <div class="summary-box">
-            <div class="k">User type</div>
-            <div class="v" id="summaryUser">Not selected</div>
-          </div>
-          <div class="summary-box">
-            <div class="k">Limb classification</div>
-            <div class="v" id="summaryLimb">Not selected</div>
-          </div>
-          <div class="summary-box">
-            <div class="k">Amputation level</div>
-            <div class="v" id="summaryLevel">Not selected</div>
-          </div>
-          <div class="summary-box">
-            <div class="k">Lifestyle</div>
-            <div class="v" id="summaryLifestyle">Not selected</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="view" id="resources">
-      <div class="grid-2">
-        <div class="card panel">
-          <h2 class="section-title">Resource library</h2>
-          <p class="section-sub">Short, structured modules filtered by profile to reduce confusion and move the user forward.</p>
-          <div class="tag-row" id="profileTags"></div>
-        </div>
-
-        <div class="card panel">
-          <h2 class="section-title" style="font-size:30px;">Action layer</h2>
-          <p class="section-sub">The user should always have a next action available.</p>
-          <div class="btn-row" style="margin-top:14px;">
-            <button class="btn" data-action="intake">Start Intake</button>
-            <button class="btn secondary" data-action="providers">Find Providers</button>
-          </div>
-          <div class="cta-note">
-            These are placeholder links for the existing intake and matching systems. In production, these would route directly into those flows.
-          </div>
-        </div>
-      </div>
-
-      <div id="resourceAccordions"></div>
-    </section>
-
-    <section class="view" id="process">
-      <div class="grid-2">
-        <div class="card panel">
-          <h2 class="section-title">Process visualization</h2>
-          <p class="section-sub">Referral → Evaluation → Measurement → Fitting → Training → Follow-Up</p>
-          <div class="flow-grid" id="flowButtons"></div>
-        </div>
-
-        <div class="card panel">
-          <h2 class="section-title" style="font-size:30px;" id="processTitle">Referral</h2>
-          <p class="section-sub">Use this to understand the care path before it becomes a source of confusion.</p>
-
-          <div class="summary-box" style="margin-top:18px;">
-            <div class="k">What happens</div>
-            <div class="v" id="processWhat"></div>
-          </div>
-          <div class="summary-box">
-            <div class="k">Who is involved</div>
-            <div class="v" id="processWho"></div>
-          </div>
-          <div class="summary-box">
-            <div class="k">What to prepare</div>
-            <div class="v" id="processPrepare"></div>
-          </div>
-
-          <div class="btn-row">
-            <button class="btn" data-action="intake">Start Intake</button>
-            <button class="btn secondary" data-action="providers">Find Providers</button>
-          </div>
-
-          <div class="action-box">
-            The system should help the user understand the current step and immediately expose the next practical action.
-          </div>
-        </div>
-      </div>
-    </section>
+    <footer class="site-footer">
+      <strong>Alaqard Care is an educational navigation tool.</strong>
+      It does not diagnose conditions or replace advice from a physician, prosthetist, physical therapist, occupational therapist, or other qualified health professional.
+      Resource links lead to the original organizations so you can review the source directly.
+      <span class="review-date">Resources reviewed September 2026.</span>
+    </footer>
   </div>
 
-  <div class="modal" id="actionModal">
-    <div class="modal-card">
-      <h3 id="modalTitle">Action</h3>
-      <p id="modalBody"></p>
-      <div class="btn-row">
-        <button class="btn" id="closeModal">Close</button>
-        <button class="btn secondary" id="closeModal2">Return to guide</button>
-      </div>
-    </div>
-  </div>
-
-  <script></script>
+  <script src="script.js"></script>
 </body>
 </html>
