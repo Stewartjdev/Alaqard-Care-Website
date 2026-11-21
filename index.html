@@ -14,15 +14,14 @@
     <header class="card hero">
       <h1>Alaqard</h1>
       <p>
-        A digital guide for people with limb loss or limb difference, families, and caregivers navigating prosthetic care.
-        Build a Profile Card, learn the care process, and open trusted resources from established health and professional organizations.
+        We are here to help you
       </p>
     </header>
 
     <section class="card nav" aria-label="Alaqard navigation">
       <div class="nav-left">
         <h2>AQ Hub</h2>
-        <p>Your starting point for profile building, education, and care navigation.</p>
+        <p>Your starting point for care navigation,profile building, education.</p>
       </div>
 
       <div class="nav-buttons">
@@ -70,7 +69,7 @@
           </div>
 
           <div class="card panel">
-            <h2 class="section-title profile-question">Discover who you are</h2>
+            <h2 class="section-title profile-question">Who you are</h2>
             <p class="section-sub">Choose the option that best describes who this Profile Card is for.</p>
 
             <div class="choice-list" id="userChoices"></div>
@@ -160,7 +159,32 @@
 
         <div id="resourceAccordions"></div>
       </section>
+      <section class="view" id="help">
+        <h2>Need help?</h2>
+        <p>Not sure where to start? The Alaqard assistant can help guide you
+        through information and resources relevant to you.</p>
+        <div class="card panel">
+          <div id="chatMessages">
+              <p><strong>Alaqard:</strong> What brings you to Alaqard?</p>
+          </div>
 
+          <div class="field">
+              <label for="chatInput">Your message</label>
+              <input
+                  type="text"
+                  id="chatInput"
+                  placeholder="Type your message..."
+              />
+          </div>
+
+          <div class="btn-row">
+              <button class="btn" id="sendChatMessage" type="button">
+                  Send
+              </button>
+          </div>
+        </div>
+      </section> 
+      <button id="start-aq-chat" type="button">Ask Alaqard anything</button>
       <section class="view" id="process">
         <div class="grid-2">
           <div class="card panel">
