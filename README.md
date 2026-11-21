@@ -1,8 +1,8 @@
 # Alaqard Care
 An online resource hub for amputees, guardians, and caregivers.
 
-Help your loved ones. Restore what was lost.
+Receiving care isn't, but that doesn't mean it shouldn't be there! 
 
 ## Coming Soon
-Community Club
-Chat rooms
+Ask It rooms
+
